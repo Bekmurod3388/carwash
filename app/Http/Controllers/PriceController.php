@@ -14,7 +14,8 @@ class PriceController extends Controller
      */
     public function index()
     {
-        //
+        $prices=Price::all()->orderby('id','desc');
+        return response()->json($prices)->with('success','message');
     }
 
     /**
