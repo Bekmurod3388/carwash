@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Cost extends Model
 {
     use HasFactory;
-    protected $fillable=['name','sum','count','total-sum','description'];
+    protected $fillable=['name','sum','count','total_sum','description'];
 }

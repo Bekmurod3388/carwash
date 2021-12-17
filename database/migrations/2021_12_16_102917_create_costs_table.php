@@ -18,7 +18,7 @@ class CreateCostsTable extends Migration
             $table->string("name");
             $table->bigInteger("sum");
             $table->bigInteger("count");
-            $table->bigInteger("total-sum");
+            $table->bigInteger("total_sum");
             $table->string("description");
             $table->timestamps();
         });
