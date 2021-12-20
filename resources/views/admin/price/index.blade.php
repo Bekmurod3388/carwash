@@ -22,8 +22,8 @@
                         <thead>
                         <tr>
                             <th scope="col">№</th>
-                            <th class="col-3" scope="col">Цена</th>
-                            <th class="col-5" scope="col">Число</th>
+                            <th class="col-3" scope="col">название</th>
+                            <th class="col-5" scope="col">Цена</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
@@ -70,7 +70,7 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">название</label>
                             <input type="text" name="name" id="name" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">

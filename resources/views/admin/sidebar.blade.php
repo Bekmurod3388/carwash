@@ -10,20 +10,20 @@
                 </li>
                 <li class="nav-item {{  request()->routeIs('admin.cost.index') ? 'active' : '' }}">
                     <a href="{{route('admin.cost.index')}}">
-                        <i class="fas fa-user"></i>
-                        <p>Cost</p>
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <p>Расходы</p>
                     </a>
                 </li>
                 <li class="nav-item {{  request()->routeIs('admin.price.index') ? 'active' : '' }}">
                     <a href="{{route('admin.price.index')}}">
-                        <i class="fas fa-user"></i>
-                        <p>Price</p>
+                        <i class="fas fa-coins"></i>
+                        <p>Цена</p>
                     </a>
                 </li>
                 <li class="nav-item {{  request()->routeIs('admin.worker.index') ? 'active' : '' }}">
                     <a href="{{route('admin.worker.index')}}">
-                        <i class="fas fa-user"></i>
-                        <p>worker</p>
+                        <i class="fas fa-users"></i>
+                        <p>Рабочий</p>
                     </a>
                 </li>
 

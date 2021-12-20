@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PriceResource;
 use App\Models\Price;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class PriceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $prices=Price::latest()->get();
-        return response()->json([PriceResource::collection($prices),'Prices fetched']);
+        $price=Price::orderby('id','desc')->paginate(10);
+        return view('admin.price.index',['price'=>$price]);
     }
 
     /**
@@ -34,32 +32,21 @@ class PriceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name'=>'required',
-            'summ'=>'required',
-        ]);
-        if ($validator->fails()){
-            return response()->json($validator->error());
-        }
-
-        $price=Price::create($request->all());
-        if ($price){
-            return response()->json(['Price created successfully.',new PriceResource($price)]);
-        }
-
+        (new Price($request->all()))->save();
+        return redirect()->route('admin.price.index')->with('success','Цена успешно созданы');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Price  $price
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Price $price)
+    public function show($id)
     {
         //
     }
@@ -67,10 +54,10 @@ class PriceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Price  $price
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Price $price)
+    public function edit($id)
     {
         //
     }
@@ -79,35 +66,25 @@ class PriceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Price  $price
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @param  \App\Models\Price $price
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, Price $price)
     {
-        $validator = Validator::make($request->all(),[
-            'name'=>'required',
-            'summ'=>'required',
-        ]);
-        if ($validator->fails()){
-            return response()->json($validator->error())->with('error','Validation Error.');
-        }
-
-        $price->name = $request->name;
-        $price->summ = $request->summ;
+        $price->fill($request->all());
         $price->save();
-
-        return response()->json(['Price updated successfully.', new PriceResource($price)]);
+        return redirect()->back()->with('success','Успешно обновлено!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Price  $price
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @param  \App\Models\Price $price
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function destroy(Price $price)
     {
-        $delete=$price->delete();
-        return response()->json('Price deleted successfully');
+        $price->delete();
+        return redirect()->route('admin.price.index')->with('success','Цена успешно удалено!');
     }
 }

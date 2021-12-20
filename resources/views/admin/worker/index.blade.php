@@ -6,13 +6,13 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-9"><h1 class="card-title">Цена</h1></div>
+                    <div class="col-9"><h1 class="card-title">Рабочий</h1></div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary" onclick="createBus()">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
-                            Добавить worker
+                            Добавить Рабочий
                         </button>
                     </div>
                 </div>
@@ -22,9 +22,9 @@
                         <thead>
                         <tr>
                             <th scope="col">№</th>
-                            <th class="col-3" scope="col">Цена</th>
-                            <th class="col-5" scope="col">Число</th>
-                            <th class="col-5" scope="col">Число</th>
+                            <th class="col-3" scope="col">имя и фамилия</th>
+                            <th class="col-5" scope="col">Тел</th>
+                            <th class="col-5" scope="col">паспорт</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
@@ -66,20 +66,20 @@
                 <input type="hidden" name="_method" id="_method" value="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Добавить Цена</h5>
+                        <h5 class="modal-title" id="modalLabel">Добавить Рабочий</h5>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">имя и фамилия:</label>
                             <input type="text" name="fullname" id="fullname" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">Тел</label>
                             <input type="text" name="phone" id="phone" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">паспорт</label>
                             <input type="text" name="passport" id="passport" class="form-control" autocomplete="off">
                         </div>
                     </div>

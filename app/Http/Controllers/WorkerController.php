@@ -21,7 +21,7 @@ class WorkerController extends Controller
     public function store(Request $request)
     {
         (new Worker($request->all()))->save();
-        return redirect()->route('admin.worker.index')->with('success','Worker успешно созданы');
+        return redirect()->route('admin.worker.index')->with('success','Рабочий успешно созданы');
     }
     /**
      * Update the specified resource in storage.
@@ -47,6 +47,6 @@ class WorkerController extends Controller
     public function destroy(Worker $worker)
     {
         $worker->delete();
-        return redirect()->route('admin.worker.index')->with('success','Водитель успешно удалено!');
+        return redirect()->route('admin.worker.index')->with('success','Рабочий успешно удалено!');
     }
 }

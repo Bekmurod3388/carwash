@@ -37,7 +37,7 @@ class CostController extends Controller
     public function store(Request $request)
     {
         (new Cost($request->all()))->save();
-        return redirect()->route('admin.cost.index')->with('success','Cost успешно созданы');
+        return redirect()->route('admin.cost.index')->with('success','Расходы успешно созданы');
     }
 
     /**
@@ -73,7 +73,7 @@ class CostController extends Controller
     {
         $cost->fill($request->all());
         $cost->save();
-        return redirect()->back()->with('success','cost обновлено!');
+        return redirect()->back()->with('success','Расходы обновлено!');
     }
 
     /**
@@ -85,6 +85,6 @@ class CostController extends Controller
     public function destroy(Cost $cost)
     {
         $cost->delete();
-        return redirect()->route('admin.cost.index')->with('success','Водитель успешно удалено!');
+        return redirect()->route('admin.cost.index')->with('success','Расходы успешно удалено!');
     }
 }

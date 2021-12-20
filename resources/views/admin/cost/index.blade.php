@@ -6,13 +6,13 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-9"><h1 class="card-title">Цена</h1></div>
+                    <div class="col-9"><h1 class="card-title">Расходы</h1></div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary" onclick="createBus()">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
-                            Добавить Цена
+                            Добавить Расходы
                         </button>
                     </div>
                 </div>
@@ -22,11 +22,11 @@
                         <thead>
                         <tr>
                             <th scope="col">№</th>
-                            <th class="col-3" scope="col">Цена</th>
-                            <th class="col-5" scope="col">Число</th>
-                            <th class="col-5" scope="col">Число</th>
-                            <th class="col-5" scope="col">Число</th>
-                            <th class="col-5" scope="col">Число</th>
+                            <th class="col-3" scope="col">Имя</th>
+                            <th class="col-5" scope="col">Цены</th>
+                            <th class="col-5" scope="col">считать</th>
+                            <th class="col-5" scope="col">Итоговая сумма</th>
+                            <th class="col-5" scope="col">описание</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
@@ -70,12 +70,12 @@
                 <input type="hidden" name="_method" id="_method" value="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Добавить Цена</h5>
+                        <h5 class="modal-title" id="modalLabel">Добавить Расходы</h5>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">Имя</label>
                             <input type="text" name="name" id="name" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
@@ -83,15 +83,15 @@
                             <input type="text" name="sum" id="sum" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">считать</label>
                             <input type="text" name="count" id="count" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">Итоговая сумма</label>
                             <input type="text" name="total_sum" id="total_sum" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number">Цена</label>
+                            <label for="number">описание</label>
                             <input type="text" name="description" id="description" class="form-control" autocomplete="off">
                         </div>
                     </div>
