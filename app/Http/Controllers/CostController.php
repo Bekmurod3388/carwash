@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CostResource;
 use App\Models\Cost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class CostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $costs=Cost::latest()->get();
-        return response()->json([CostResource::collection($costs),'Cost fetched']);
+        $costs=Cost::orderby('id','desc')->paginate(10);
+        return view('admin.cost.index',['costs'=>$costs]);
     }
 
     /**
@@ -34,22 +32,12 @@ class CostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name'=>'required',
-            'summ'=>'required',
-        ]);
-        if ($validator->fails()){
-            return response()->json($validator->error());
-        }
-
-        $price=Cost::create($request->all());
-        if ($price){
-            return response()->json(['Price created successfully.',new CostResource($price)]);
-        }
+        (new Cost($request->all()))->save();
+        return redirect()->route('admin.cost.index')->with('success','Cost успешно созданы');
     }
 
     /**
@@ -79,34 +67,24 @@ class CostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Cost $cost
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(Request $request, Cost $cost)
+    public function update(Request $request,Cost $cost)
     {
-        $validator = Validator::make($request->all(),[
-            'name'=>'required',
-            'summ'=>'required',
-        ]);
-        if ($validator->fails()){
-            return response()->json($validator->error())->with('error','Validation Error.');
-        }
-
-        $cost->name = $request->name;
-        $cost->summ = $request->summ;
+        $cost->fill($request->all());
         $cost->save();
-
-        return response()->json(['Cost updated successfully.', new CostResource($cost)]);
+        return redirect()->back()->with('success','cost обновлено!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  Cost $cost
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function destroy(Cost $cost)
     {
-        $cost=$cost->delete();
-        return response()->json('Cost deleted successfully');
+        $cost->delete();
+        return redirect()->route('admin.cost.index')->with('success','Водитель успешно удалено!');
     }
 }
