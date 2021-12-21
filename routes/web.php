@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CostController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\TranzactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::resource('price',PriceController::class);
     Route::resource('users',UserController::class);
     Route::resource('worker',WorkerController::class);
+    Route::resource('tranzaction',TranzactionController::class);
 
 
 });
