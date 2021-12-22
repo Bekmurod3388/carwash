@@ -9,4 +9,17 @@ class Tranzaction extends Model
 {
     use HasFactory;
     protected $fillable=['worker_id','price_id','client_id','sum','status','rating'];
+
+
+    public function worker(){
+        $this->belongsTo(Worker::class);
+    }
+
+    public function price(){
+        $this->belongsTo(Price::class);
+    }
+
+    public function client(){
+        $this->belongsTo(Client::class);
+    }
 }

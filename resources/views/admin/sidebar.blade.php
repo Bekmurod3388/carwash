@@ -26,7 +26,12 @@
                         <p>Рабочий</p>
                     </a>
                 </li>
-
+                <li class="nav-item {{  request()->routeIs('admin.client.index') ? 'active' : '' }}">
+                    <a href="{{route('admin.client.index')}}">
+                        <i class="fas fa-won-sign"></i>
+                        <p>Клиент</p>
+                    </a>
+                </li>
             </ul>
 
 

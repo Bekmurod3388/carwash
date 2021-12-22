@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CostController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\TranzactionController;
@@ -36,7 +37,7 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::resource('price',PriceController::class);
     Route::resource('users',UserController::class);
     Route::resource('worker',WorkerController::class);
-    Route::resource('tranzaction',TranzactionController::class);
+    Route::resource('client',ClientController::class);
 
 
 });

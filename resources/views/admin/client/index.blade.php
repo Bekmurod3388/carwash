@@ -6,13 +6,13 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-9"><h1 class="card-title">Рабочий</h1></div>
+                    <div class="col-9"><h1 class="card-title">Клиент</h1></div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary" onclick="createBus()">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
-                            Добавить Рабочий
+                            Добавить Клиент
                         </button>
                     </div>
                 </div>
@@ -22,26 +22,31 @@
                         <thead>
                         <tr>
                             <th scope="col">№</th>
-                            <th class="col-3" scope="col">имя и фамилия</th>
-                            <th class="col-5" scope="col">Тел</th>
-                            <th class="col-5" scope="col">паспорт</th>
+                            <th class="col-3" scope="col">номер</th>
+                            <th class="col-5" scope="col">имя рабочего</th>
+                            <th class="col-5" scope="col">Цена</th>
+                            <th class="col-5" scope="col">статус</th>
+                            <th class="col-5" scope="col">Цена</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        @foreach($workers as $worker)
+                        @foreach($clients as $client)
                             <tr>
-                                <th scope="row" class="col-1">{{$worker->id}}</th>
-                                <td>{{$worker->fullname}}</td>
-                                <td>{{$worker->phone}}</td>
-                                <td>{{$worker->passport}}</td>
+{{--                                price_id','number','worker_id','status','sum--}}
+                                <th scope="row" class="col-1">{{$client->id}}</th>
+                                <td>{{$client->number}}</td>
+                                <td>{{$client->worker->fullname}}</td>
+                                <td>{{$client->price->name}}</td>
+                                <td>{{$client->status}}</td>
+                                <td>{{$client->sum}}</td>
                                 <td>
-                                    <form action="{{route('admin.worker.destroy', ['worker' => $worker])}}" method="post"
-                                          id="form_{{$worker->id}}">
+                                    <form action="{{route('admin.client.destroy', ['client' => $client])}}" method="post"
+                                          id="form_{{$client->id}}">
                                         @method('DELETE')
                                         @csrf
-                                        <button onclick="createBus('{{$worker->id}}', '{{route('admin.worker.update', ['worker' => $worker])}}')"
+                                        <button onclick="createBus('{{$client->id}}', '{{route('admin.client.update', ['client' => $client])}}')"
                                                 class="btn btn-warning" type="button" title="Изменить"><i class="fas fa-pencil-alt"></i>
                                         </button>
 
@@ -66,21 +71,39 @@
                 <input type="hidden" name="_method" id="_method" value="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Добавить Рабочий</h5>
+                        <h5 class="modal-title" id="modalLabel">Добавить Расходы</h5>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="number">имя и фамилия:</label>
-                            <input type="text" name="fullname" id="fullname" class="form-control" autocomplete="off">
+                            <label for="number">Имя</label>
+                            <select class="custom-select" onchange="driver(bus_id)" id="worker_id" name="worker_id">
+
+                                @foreach($workers as $worker)
+                                    <option value="{{$worker->id}}">{{$worker->fullname}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="number">Тел</label>
-                            <input type="text" name="phone" id="phone" class="form-control" autocomplete="off">
+                            <label for="number">Цена</label>
+                            <select class="custom-select" onchange="driver(bus_id)" id="price_id" name="price_id">
+
+                                @foreach($prices as $price)
+                                    <option value="{{$price->id}}">{{$price->sum}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="number">паспорт</label>
-                            <input type="text" name="passport" id="passport" class="form-control" autocomplete="off">
+                            <label for="number">number</label>
+                            <input type="text" name="number" id="number" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Итоговая сумма</label>
+                            <input type="text" name="status" id="status" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="number">описание</label>
+                            <input type="text" name="sum" id="sum" class="form-control" autocomplete="off">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -101,21 +124,34 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(qiymat) > - 1)
             })
         });
+        $(document).ready( function () {
+            $('#example').DataTable(
+                {
+                    "language": {"url":"//cdn.datatables.net/plug-ins/1.11.3/i18n/ru.json"},
+                    "responsive": true
+                }
+            );
+        } );
 
         function createBus(val = '', action = '') {
             let form = $('#firm')
             let method = $('#_method')
             if (val === '') {
-                form.attr('action', "{{route('admin.worker.store')}}")
-                $('#fullname').val('')
-                $('#phone').val('')
-                $('#passport').val('')
-
+                form.attr('action', "{{route('admin.client.store')}}")
+                $('#worker_id').val('')
+                $('#price_id').val('')
+                $('#number').val('')
+                $('#sum').val('')
+                $('#status').val('')
                 // method.val("POST")
             } else {
                 method.val("PUT")
                 form.attr('action', action)
+                $('#worker_id').val(val)
+                $('#price_id').val(val)
                 $('#number').val(val)
+                $('#sum').val(val)
+                $('#status').val(val)
             }
 
             $('#modal').modal()
@@ -141,13 +177,5 @@
                 }
             });
         }
-        $(document).ready( function () {
-            $('#example').DataTable(
-                {
-                    "language": {"url":"//cdn.datatables.net/plug-ins/1.11.3/i18n/ru.json"},
-                    "responsive": true
-                }
-            );
-        } );
     </script>
 @stop
