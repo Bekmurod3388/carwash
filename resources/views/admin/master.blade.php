@@ -127,6 +127,10 @@
 {{--<script type="text/javascript" language="javascript" src="//cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js"></script>--}}
 <!-- Atlantis JS -->
 <script src="{{asset('/assets/js/atlantis.min.js')}}"></script>
+
+<script src={{asset('/assets/js/chart-area-demo.js')}}></script>
+<script src={{asset('/assets/js/chart-bar-demo.js')}}></script>
+
 @yield('script')
 </body>
 </html>

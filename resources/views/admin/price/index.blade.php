@@ -6,13 +6,13 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-9"><h1 class="card-title">Цена</h1></div>
+                    <div class="col-9"><h1 class="card-title">Прайс лист</h1></div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary" onclick="createBus()">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
-                            Добавить Цена
+                            Добавить Прайс лист
                         </button>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                                           id="form_{{$prices->id}}">
                                         @method('DELETE')
                                         @csrf
-                                        <button onclick="createBus('{{$prices->price}}', '{{route('admin.price.update', ['price' => $prices])}}')"
+                                        <button onclick="createBus('{{$prices->id}}', '{{route('admin.price.update', ['price' => $prices])}}')"
                                                 class="btn btn-warning" type="button" title="Изменить"><i class="fas fa-pencil-alt"></i>
                                         </button>
 
@@ -65,7 +65,7 @@
                 <input type="hidden" name="_method" id="_method" value="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Добавить Цена</h5>
+                        <h5 class="modal-title" id="modalLabel">Добавить Прайс лист</h5>
                     </div>
                     <div class="modal-body">
 

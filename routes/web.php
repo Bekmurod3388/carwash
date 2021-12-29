@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CostController;
 use App\Http\Controllers\PriceController;
@@ -38,6 +39,7 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::resource('users',UserController::class);
     Route::resource('worker',WorkerController::class);
     Route::resource('client',ClientController::class);
+    Route::get('chart',[ChartController::class,'index'])->name('chart.index');
 
 
 });

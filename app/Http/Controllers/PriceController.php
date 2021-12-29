@@ -71,6 +71,7 @@ class PriceController extends Controller
      */
     public function update(Request $request, Price $price)
     {
+
         $price->fill($request->all());
         $price->save();
         return redirect()->back()->with('success','Успешно обновлено!');

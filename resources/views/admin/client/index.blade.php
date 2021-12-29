@@ -26,7 +26,7 @@
                             <th class="col-5" scope="col">имя рабочего</th>
                             <th class="col-5" scope="col">Цена</th>
                             <th class="col-5" scope="col">статус</th>
-                            <th class="col-5" scope="col">Цена</th>
+                            <th class="col-5" scope="col">Прайс лист</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
@@ -89,7 +89,7 @@
                             <select class="custom-select" onchange="driver(bus_id)" id="price_id" name="price_id">
 
                                 @foreach($prices as $price)
-                                    <option value="{{$price->id}}">{{$price->sum}}</option>
+                                    <option value="{{$price->id}}">{{$price->summ}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -98,7 +98,7 @@
                             <input type="text" name="number" id="number" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number">Итоговая сумма</label>
+                            <label for="number"></label>
                             <input type="text" name="status" id="status" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
@@ -128,7 +128,7 @@
             $('#example').DataTable(
                 {
                     "language": {"url":"//cdn.datatables.net/plug-ins/1.11.3/i18n/ru.json"},
-                    "responsive": true
+                    "responsive": true,
                 }
             );
         } );

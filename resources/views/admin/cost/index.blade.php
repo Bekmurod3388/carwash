@@ -6,13 +6,13 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-9"><h1 class="card-title">Расходы</h1></div>
+                    <div class="col-9"><h1 class="card-title">Приход</h1></div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary" onclick="createBus()">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
-                            Добавить Расходы
+                            Добавить Приход
                         </button>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <input type="hidden" name="_method" id="_method" value="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Добавить Расходы</h5>
+                        <h5 class="modal-title" id="modalLabel">Добавить Приход</h5>
                     </div>
                     <div class="modal-body">
 
