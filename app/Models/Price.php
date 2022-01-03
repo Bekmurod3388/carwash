@@ -10,5 +10,5 @@ class Price extends Model
 {
     use HasFactory,SoftDeletes;
     protected $softDelete = true;
-    protected $fillable = ["name", "summ"];
+    protected $fillable = ["name", "summ","worker_sum"];
 }

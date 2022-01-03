@@ -17,6 +17,7 @@ class CreatePricesTable extends Migration
             $table->id();
             $table->string("name");
             $table->integer("summ");
+            $table->integer('worker_sum');
             $table->timestamps();
             $table->softDeletes();
         });

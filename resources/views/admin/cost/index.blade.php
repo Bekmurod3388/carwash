@@ -18,7 +18,26 @@
                 </div>
                 <hr>
                 <div class="card-body">
-                    <table class="table table-bordered" id="example">
+
+                    <div class="row">
+
+                        <div class="col-xl-10 col-lg-10">
+
+                            <!-- Area Chart -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                    <hr>
+
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered" id="example">
                         <thead>
                         <tr>
                             <th scope="col">№</th>
@@ -104,6 +123,10 @@
         </div>
     </div>
 
+            <script type="text/javascript">
+                var _ydata=JSON.parse('{!! json_encode($month) !!}');
+                var _xdata=JSON.parse('{!! json_encode($count) !!}');
+            </script>
 @endsection
 @section('script')
     <script>

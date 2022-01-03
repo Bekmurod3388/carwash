@@ -21,12 +21,14 @@
                     <table class="table table-bordered" id="example">
                         <thead>
                         <tr>
-                            <th scope="col">№</th>
+                            <th class="col-3" scope="col">№</th>
                             <th class="col-3" scope="col">номер</th>
                             <th class="col-5" scope="col">имя рабочего</th>
                             <th class="col-5" scope="col">Цена</th>
-                            <th class="col-5" scope="col">статус</th>
                             <th class="col-5" scope="col">Прайс лист</th>
+                            <th class="col-5" scope="col"> Сотрудники Прайс лист</th>
+                            <th class="col-5" scope="col">статус</th>
+                            <th class="col-5" scope="col">статус</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
@@ -38,7 +40,9 @@
                                 <th scope="row" class="col-1">{{$client->id}}</th>
                                 <td>{{$client->number}}</td>
                                 <td>{{$client->worker->fullname}}</td>
+                                <td>{{$client->price->summ}}</td>
                                 <td>{{$client->price->name}}</td>
+                                <td>{{$client->price->worker_sum}}</td>
                                 <td>{{$client->status}}</td>
                                 <td>{{$client->sum}}</td>
                                 <td>
@@ -89,7 +93,7 @@
                             <select class="custom-select" onchange="driver(bus_id)" id="price_id" name="price_id">
 
                                 @foreach($prices as $price)
-                                    <option value="{{$price->id}}">{{$price->summ}}</option>
+                                    <option value="{{$price->id}}">{{$price->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -98,8 +102,12 @@
                             <input type="text" name="number" id="number" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="number"></label>
-                            <input type="text" name="status" id="status" class="form-control" autocomplete="off">
+                            <label for="number">status</label>
+                            <select class="custom-select" id="status" name="status">
+                                <option value=""></option>
+                                    <option value="yuvilyapti">yuvilyapti</option>
+                                    <option value="yuvildi">yuvildi</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="number">описание</label>

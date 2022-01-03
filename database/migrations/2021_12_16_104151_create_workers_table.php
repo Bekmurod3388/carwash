@@ -19,6 +19,7 @@ class CreateWorkersTable extends Migration
             $table->string("phone");
             $table->string("passport");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

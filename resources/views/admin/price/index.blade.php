@@ -24,6 +24,7 @@
                             <th scope="col">№</th>
                             <th class="col-3" scope="col">название</th>
                             <th class="col-5" scope="col">Цена</th>
+                            <th scope="col">--</th>
                             <th style="width: auto" scope="col">Действие</th>
                         </tr>
                         </thead>
@@ -34,6 +35,7 @@
                                 <th scope="row" class="col-1">{{$prices->id}}</th>
                                 <td>{{$prices->name}}</td>
                                 <td>{{$prices->summ}}</td>
+                                <td>{{$prices->worker_sum}}</td>
 
                                 <td>
                                     <form action="{{route('admin.price.destroy', ['price' => $prices])}}" method="post"
@@ -77,6 +79,10 @@
                             <label for="number">Цена</label>
                             <input type="text" name="summ" id="summ" class="form-control" autocomplete="off">
                         </div>
+                        <div class="form-group">
+                            <label for="number">Сотрудники</label>
+                            <input type="text" name="worker_sum" id="worker_sum" class="form-control" autocomplete="off">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -104,11 +110,13 @@
                 form.attr('action', "{{route('admin.price.store')}}")
                 $('#name').val('')
                 $('#summ').val('')
+                $('#worker_sum').val('')
                 // method.val("POST")
             } else {
                 method.val("PUT")
                 form.attr('action', action)
                 $('#summ').val(val)
+                $('#workersum').val(val)
                 $('#name').val(val)
             }
 
