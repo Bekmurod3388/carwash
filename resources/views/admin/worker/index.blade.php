@@ -115,7 +115,9 @@
             } else {
                 method.val("PUT")
                 form.attr('action', action)
-                $('#number').val(val)
+                $('#fullname').val(val)
+                $('#phone').val(val)
+                $('#passport').val(val)
             }
 
             $('#modal').modal()
